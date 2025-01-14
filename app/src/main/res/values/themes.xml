@@ -6,4 +6,13 @@
     </style>
 
     <style name="Theme.KlartByvejr" parent="Base.Theme.KlartByvejr" />
+
+    <style name="Theme.KlartByvejr.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+        <item name="appWidgetRadius">0dp</item>
+        <item name="appWidgetInnerRadius">0dp</item>
+    </style>
+
+    <style name="Theme.KlartByvejr.AppWidgetContainer" parent="Theme.KlartByvejr.AppWidgetContainerParent">
+        <item name="appWidgetPadding">0dp</item>
+    </style>
 </resources>

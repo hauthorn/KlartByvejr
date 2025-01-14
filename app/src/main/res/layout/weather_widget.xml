@@ -1,0 +1,15 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.KlartByvejr.AppWidget.Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.KlartByvejr.AppWidgetContainer">
+
+    <ImageView
+        android:id="@+id/weather_widget_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/weather_forecast_image"
+        tools:src="@drawable/ic_launcher_foreground"
+        tools:srcCompat="@mipmap/ic_launcher_foreground" />
+</RelativeLayout>
