@@ -40,9 +40,13 @@ internal fun updateAppWidget(
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.weather_widget)
     val appWidgetTarget = AppWidgetTarget(context, R.id.weather_widget_view, views, appWidgetId)
+
+    val sharedPref = context.getSharedPreferences("me.hauthorn.byvejr", Context.MODE_PRIVATE)
+    val zip = sharedPref.getString("zip", "7500") ?: "7500"
+
     Glide.with(context)
         .asBitmap()
-        .load("https://www.klartvejr.dk/kort/7500")
+        .load("https://www.klartvejr.dk/kort/$zip")
         .into(appWidgetTarget)
 
     // Instruct the widget manager to update the widget
