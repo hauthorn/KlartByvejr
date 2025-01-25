@@ -4,14 +4,19 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.widget.RemoteViews
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.AppWidgetTarget
+import java.util.concurrent.TimeUnit
 
 
-/**
- * Implementation of App Widget functionality.
- */
 class WeatherWidget : AppWidgetProvider() {
+    private val widgetWorkKey = "WidgetUpdateWork"
+
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
@@ -23,12 +28,26 @@ class WeatherWidget : AppWidgetProvider() {
         }
     }
 
+
     override fun onEnabled(context: Context) {
-        // Enter relevant functionality for when the first widget is created
+        val workRequest = PeriodicWorkRequestBuilder<WidgetWorker>(2, TimeUnit.HOURS)
+            .setConstraints(
+                Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                    .build()
+            )
+            .build()
+
+        WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+            widgetWorkKey,
+            ExistingPeriodicWorkPolicy.KEEP,
+            workRequest
+        )
     }
 
     override fun onDisabled(context: Context) {
-        // Enter relevant functionality for when the last widget is disabled
+        // Disable the periodic work
+        WorkManager.getInstance(context).cancelUniqueWork(widgetWorkKey)
     }
 }
 

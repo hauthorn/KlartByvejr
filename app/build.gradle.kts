@@ -49,5 +49,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // Image loading
     implementation(libs.glide)
+
+    // WorkManager for periodic updates
+    implementation(libs.androidx.work.runtime.ktx)
 }
