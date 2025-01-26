@@ -10,6 +10,7 @@ import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.AppWidgetTarget
 import java.util.concurrent.TimeUnit
 
@@ -65,6 +66,7 @@ internal fun updateAppWidget(
 
     Glide.with(context)
         .asBitmap()
+        .diskCacheStrategy(DiskCacheStrategy.NONE)
         .load("https://www.klartvejr.dk/kort/$zip")
         .into(appWidgetTarget)
 

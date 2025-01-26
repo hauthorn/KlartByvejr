@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 
 class MainActivity : AppCompatActivity() {
@@ -64,6 +65,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadImage(zip: String) {
         Glide.with(this)
             .load("https://www.klartvejr.dk/kort/$zip")
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(findViewById(R.id.weatherImageView))
     }
 }
